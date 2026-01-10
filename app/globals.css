@@ -1,19 +1,97 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #000319;
+  --foreground: #ededed;
+  --primary-purple: #a855f7;
+  --secondary-blue: #3b82f6;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Poppins", sans-serif;
+}
+
+/* Header Section Background */
+.header-section {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000319 0%, #0c0a1a 50%, #1a0a2e 100%);
+  overflow: hidden;
+}
+
+/* Grid Pattern Overlay */
+.header-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(139, 92, 246, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Blurred Gradient Light Effect - Left Side */
+.header-glow {
+  position: absolute;
+  top: 0;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.4) 0%,
+    rgba(139, 92, 246, 0.2) 30%,
+    rgba(168, 85, 247, 0.1) 50%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Secondary glow - Top Right */
+.header-glow-secondary {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(88, 28, 135, 0.3) 0%,
+    rgba(126, 34, 206, 0.15) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content wrapper to position above effects */
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Liquid/Water Morph Animation */
+@keyframes water-morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+.water-blob {
+  animation: water-morph 8s ease-in-out infinite;
 }
